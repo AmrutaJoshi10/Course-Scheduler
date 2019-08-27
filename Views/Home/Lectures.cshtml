@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CoursesApp.Models.Lecture>
+<!--
+  Lectures.cshtml - display ordered list of all lectures
+
+  Jim Fawcett, CSE686 - Internet Programming, Spring 2019
+-->
+
+@{
+  ViewData["Title"] = "Lectures";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lectures</h1>
+
+<p>
+  <a asp-action="Index">Create New Lecture with Add Lecture link on Course List</a>
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.Title)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Content)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Course)
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td style="padding: 0.1em;">
+          @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td style="padding: 0.1em;">
+          @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td style="padding: 0.1em;">
+          @Html.DisplayFor(modelItem => item.Course.Name)
+        </td>
+        <td style="padding: 0.1em;">
+          <a asp-action="EditLecture" asp-route-id="@item.LectureId">Edit Lecture</a> |
+          @*<a asp-action="Details" asp-route-id="@item.LectureId">Details</a> |*@
+          <a asp-action="DeleteLecture" asp-route-id="@item.LectureId">Delete Lecture</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<div>
+  <a asp-action="Index">Back to Course List</a>
+</div>
+

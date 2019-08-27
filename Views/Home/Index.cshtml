@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CoursesApp.Models.Course>
+<!--
+  Index.cshtml - display list of all courses
+
+  Jim Fawcett, CSE686 - Internet Programming, Spring 2019
+-->
+
+@{
+  ViewData["Title"] = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index - List of Courses</h1>
+
+<p>
+  <a asp-action="CreateCourse">Create New Course</a>
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.Identifier)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Name)
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.Identifier)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+          <a asp-action="EditCourse" asp-route-id="@item.CourseId">Edit Course</a> |
+          <a asp-action="CourseDetails" asp-route-id="@item.CourseId">Course Details</a> |
+          <a asp-action="DeleteCourse" asp-route-id="@item.CourseId">Delete Course</a> |
+          <a asp-action="AddLecture" asp-route-id="@item.CourseId">Add Lecture</a> |
+          <a asp-action="Lectures" asp-rout-id="@item.CourseId">View Lectures</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
